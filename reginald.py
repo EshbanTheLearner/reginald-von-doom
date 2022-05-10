@@ -1,7 +1,7 @@
 
 import streamlit as st
 import torch 
-from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
+from transformers import T5Tokenizer, T5ForConditionalGeneration
 from transformers.pipelines import pipeline
 import random
 
@@ -38,7 +38,16 @@ too long and for too many, it has not. It is a Budget that reflects the fact tha
 has never worked, and that the best way to grow our economy is not from the top down, but from
 the bottom up and the middle out. Our prosperity comes from the people who get up every day, work
 hard, raise their family, pay their taxes, serve their Nation, and volunteer in their communities. If
-we make that understanding our foundation, everything we build upon it will be strong."""
+we make that understanding our foundation, everything we build upon it will be strong.""",
+"""National Commercial Bank (NCB), Saudi Arabia’s largest lender by assets, agreed to buy rival Samba Financial Group 
+for $15 billion in the biggest banking takeover this year.NCB will pay 28.45 riyals ($7.58) for each Samba share, 
+according to a statement on Sunday, valuing it at about 55.7 billion riyals. NCB will offer 0.739 new shares for each 
+Samba share, at the lower end of the 0.736-0.787 ratio the banks set when they signed an initial framework agreement 
+in June.The offer is a 3.5% premium to Samba’s Oct. 8 closing price of 27.50 riyals and about 24% higher than the 
+level the shares traded at before the talks were made public. Bloomberg News first reported the merger discussions.The new 
+bank will have total assets of more than $220 billion, creating the Gulf region’s third-largest lender. The entity’s 
+$46 billion market capitalization nearly matches that of Qatar National Bank QPSC, which is still the Middle East’s 
+biggest lender with about $268 billion of assets."""
 ]
 
 st.cache(show_spinner=True)
@@ -61,7 +70,6 @@ if not len(text) == 0:
     preprocessed_text = text.strip().replace("\n", "")
     t5_prepared_text = "summarize: " + preprocessed_text
     x_dict = nlp_pipeline(t5_prepared_text)
-    #st.text_area(label = "Summary", value = , disabled=True)
     st.subheader("💎 Summary 💎")
     if button:
         st.write(x_dict[0]["summary_text"])
