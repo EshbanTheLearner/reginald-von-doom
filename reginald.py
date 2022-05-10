@@ -51,8 +51,8 @@ biggest lender with about $268 billion of assets."""
 
 st.cache(show_spinner=True)
 def load_model():
-    model = T5ForConditionalGeneration.from_pretrained("t5-small")
-    tokenizer = T5Tokenizer.from_pretrained("t5-small")
+    model = T5ForConditionalGeneration.from_pretrained("google/t5-efficient-small-el16")
+    tokenizer = T5Tokenizer.from_pretrained("google/t5-efficient-small-el16")
     nlp_pipeline = pipeline("summarization", model=model, tokenizer=tokenizer)
     return nlp_pipeline
 
