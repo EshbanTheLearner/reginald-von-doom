@@ -6,7 +6,7 @@ import random
 
 st.set_page_config(page_title="Reginald von Doom", page_icon = "🤖", initial_sidebar_state = 'auto')
 
-docs = [
+data = [
     """The United States Declaration of Independence was the first Etext
 released by Project Gutenberg, early in 1971.  The title was stored
 in an emailed instruction set which required a tape or diskpack be
@@ -49,6 +49,14 @@ $46 billion market capitalization nearly matches that of Qatar National Bank QPS
 biggest lender with about $268 billion of assets."""
 ]
 
+docs = {
+    "The United States Declaration of Independence": data[0],
+    "The Fifth Ammendment": data[1],
+    "Montana Corporation Law": data[2],
+    "President Biden's Remarks on Budget 2022": data[3],
+    "NCB and Samba Merger": data[4]
+}
+
 st.cache(show_spinner=True)
 def load_model():
     model = T5ForConditionalGeneration.from_pretrained("t5-small")
@@ -62,7 +70,13 @@ st.header("🤖 Reginald von Doom 🤖")
 st.text("Your personal legal and financial assistant")
 
 st.subheader("👇🏽 Your Legal/Financial Document Goes Here 👇🏽")
-text = st.text_area(label="", value=random.choice(docs), height=250, max_chars=None, key=None)
+
+selected_document = st.selectbox(
+    "Type or select a movie from the list", 
+    docs.keys()
+)
+
+text = st.text_area(label="", value=docs[selected_document], height=250, max_chars=None, key=None)
 button = st.button("⚙️ Generate Summary ⚙️")
 
 if not len(text) == 0:
