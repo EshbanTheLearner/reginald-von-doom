@@ -72,7 +72,7 @@ st.text("Your personal legal and financial assistant")
 st.subheader("👇🏽 Your Legal/Financial Document Goes Here 👇🏽")
 
 selected_document = st.selectbox(
-    "Type or select a movie from the list", 
+    "Select a random document from the dropdown", 
     docs.keys()
 )
 
