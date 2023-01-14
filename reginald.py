@@ -1,8 +1,6 @@
-
 import streamlit as st
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from transformers.pipelines import pipeline
-import random
 
 st.set_page_config(page_title="Reginald von Doom", page_icon = "🤖", initial_sidebar_state = 'auto')
 
@@ -66,10 +64,10 @@ def load_model():
 
 nlp_pipeline = load_model()
 
-st.header("🤖 Reginald von Doom 🤖")
+st.header("Reginald von Doom 🤖")
 st.text("Your personal legal and financial assistant")
 
-st.subheader("👇🏽 Your Legal/Financial Document Goes Here 👇🏽")
+st.subheader("Your Legal/Financial Document Goes Here 👇🏽")
 
 selected_document = st.selectbox(
     "Select a random document from the dropdown", 
@@ -77,12 +75,12 @@ selected_document = st.selectbox(
 )
 
 text = st.text_area(label="", value=docs[selected_document], height=250, max_chars=None, key=None)
-button = st.button("⚙️ Generate Summary ⚙️")
+button = st.button("Generate Summary ⚙️")
 
 if not len(text) == 0:
     preprocessed_text = text.strip().replace("\n", "")
     t5_prepared_text = "summarize: " + preprocessed_text
     x_dict = nlp_pipeline(t5_prepared_text)
-    st.subheader("💎 Summary 💎")
+    st.subheader("Summary 💎")
     if button:
         st.write(x_dict[0]["summary_text"])
